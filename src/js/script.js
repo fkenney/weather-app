@@ -1,8 +1,7 @@
 document.getElementById("searchbox").addEventListener("keyup", (event)=>{
     if(event.key === "Enter"){
         var city = document.getElementById("searchbox").value;
-        weather.fetchWeather(city);
-        document.body.style.backgroundImage = "url('https://source.unsplash.com/random/?" +city+ ",landscape')";
+        weather.fetchWeather(city); 
     }
 } );
 
@@ -13,7 +12,8 @@ var weather = {
         fetch("https://api.openweathermap.org/data/2.5/weather?units=imperial&q="+city + "&appid="+ this.apiKey)
         .then(response => response.json())
         .then(data => this.display(data))
-     },
+         updateBackground(city);
+     }, 
 
      display : function(data){
         const {name} = data;
@@ -28,11 +28,14 @@ var weather = {
         document.getElementById("temp").innerText = temp + " °F";
         document.getElementById("desc").innerText = description;
         document.getElementById("humidity").innerText = humidity +" %";
-        document.getElementById("speed").innerText = speed +" mph";
-        
+        document.getElementById("speed").innerText = speed +" mph";  
      }
 };
-weather.fetchWeather("Ghana");
 
+function updateBackground(city){
+    document.body.style.backgroundImage = "url('https://source.unsplash.com/random/?" +city+",landscape')";
+}
+
+weather.fetchWeather("Tampa");
 
 
