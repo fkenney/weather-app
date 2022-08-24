@@ -1,3 +1,10 @@
+document.getElementById("searchbox").addEventListener("keyup", (event)=>{
+    if(event.key === "Enter"){
+        var city = document.getElementById("searchbox").value;
+        weather.fetchWeather(city);
+        document.body.style.backgroundImage = "url('https://source.unsplash.com/random/?" +city+ ",landscape')";
+    }
+} );
 
 
 var weather = {
@@ -18,13 +25,14 @@ var weather = {
 
         document.getElementById("cityName").innerText=name;
         document.getElementById("icon").src = "http://openweathermap.org/img/wn/" + icon +"@2x.png";
+        document.getElementById("temp").innerText = temp;
         document.getElementById("desc").innerText = description;
         document.getElementById("humidity").innerText = humidity;
         document.getElementById("speed").innerText = speed;
+        
      }
 };
-
-weather.fetchWeather("Montgomery");
+weather.fetchWeather("Ghana");
 
 
 
